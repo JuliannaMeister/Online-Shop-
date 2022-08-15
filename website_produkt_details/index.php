@@ -23,7 +23,6 @@ if(isset($_POST["benutzer"]) && isset($_POST["kennwort"]))
 {
 	if($_POST["benutzer"] == "max" && $_POST["kennwort"] == "mustermann")
 	{
-		#echo "klappt";
 		$_SESSION["eingeloggt"] = true;
 		$_SESSION["benutzer"] = "Max Mustermann";
 		$_SESSION["mitteilung"] = "<div style='color:lightgreen'>Erfolgreich eingeloggt</div>";
@@ -31,7 +30,7 @@ if(isset($_POST["benutzer"]) && isset($_POST["kennwort"]))
 		{
 			setcookie("login_merken", "Max Mustermann", time() + 60*60*24*365);
 		}
-		# Kopfzeilen ändern
+		
 		header("Location: ?seite=verwaltung"); # Weiterleiten zur Verwaltung
 		exit; # PHP - Programm Ende
 	}
@@ -83,11 +82,11 @@ if(isset($_COOKIE["login_merken"]))
 <?php
 if(isset($_SESSION["mitteilung"]))
 {
-	echo $_SESSION["mitteilung"]; # Anzeigen
-	unset($_SESSION["mitteilung"]); # Entfernen / Löschen
+	echo $_SESSION["mitteilung"]; 
+	unset($_SESSION["mitteilung"]);
 }
 
-# wenn die Seite nicht(!) gesetzt ist
+
 if(!isset($_GET["seite"]))
 {
 	$_GET["seite"] = "start"; # Startseite einstellen
@@ -95,37 +94,36 @@ if(!isset($_GET["seite"]))
 
 #print_r($_GET);
 
-# Seitenauswahl
 switch($_GET["seite"])
 {
 	case "start":
-		include("php/startseite.php"); # externe Datei einbinden
+		include("php/startseite.php"); 
 	break;
 	case "produkte":
-		include("php/produkte.php");	 # externe Datei einbinden
+		include("php/produkte.php");	
 	break;
 	case "warenkorb":
-		include("html/warenkorb.html"); # externe Datei einbinden
+		include("html/warenkorb.html");
 	break;
 	case "login":
-		include("php/login.php"); # externe Datei einbinden	
+		include("php/login.php"); 	
 	break;
 	case "logout":
-		include("php/logout.php"); # externe Datei einbinden	
+		include("php/logout.php"); 	
 	break;	
 	case "verwaltung":
 		if(isset($_SESSION["eingeloggt"]))
 		{
-			include("php/verwaltung.php"); # externe Datei einbinden
+			include("php/verwaltung.php"); 
 		}
 		else
 		{
-			header("Location: ?seite=login"); # Weiterleitung zum Login
-			exit; # Programm verlassen / beenden
+			header("Location: ?seite=login"); 
+			exit; 
 		}	
 	break;	
 	default:
-		include("html/404.html"); # externe Datei einbinden
+		include("html/404.html"); 
 }
 
 ?>
@@ -138,8 +136,8 @@ Copyright 2021
 </body>
 </html>
 <?php
-# Datenbankverbindung trennen
-#########################################################################
+
+
 mysqli_close($link);
-#########################################################################
+
 ?>
