@@ -4,25 +4,11 @@ include("produkt_suchen.php");
 
 
 
-/*
-# 100% identisch
-$antwort = mysqli_query($link, "
-select * from produkte
-where bezeichnung = '".$_SESSION["suche"]."'
-order by preis
-");
 
-# ähnlich LIKE (Teilbegriffe,  % = beliebige viele Zeichen)
-$antwort = mysqli_query($link, "
-select * from produkte
-where bezeichnung LIKE '%".$_SESSION["suche"]."%'
-order by preis
-");
-*/
 
-#where bezeichnung LIKE '%".$_SESSION["suche"]."%'
+
 $bedingungen_array = array();
-# Suche
+
 if(isset($_SESSION["suche"]) && $_SESSION["suche"] != "")
 {
 	$bedingungen_array[] = "
@@ -36,7 +22,7 @@ if(isset($_SESSION["suche"]) && $_SESSION["suche"] != "")
 	";
 }
 
-# Filter
+
 $array = array("S","M","L","XL","XXL");
 $filter_array = array();
 foreach($array as $groesse)
