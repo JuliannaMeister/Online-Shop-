@@ -21,8 +21,8 @@ if(isset($_POST["produkt_speichern"]))
 
 	if($_FILES["bild"]["error"] == 0 && $_FILES["bild"]["size"] > 0)
 	{
-		$bild			= uniqid().".jpg";	# neuer Dateiname
-		move_uploaded_file($_FILES["bild"]["tmp_name"], "uploads/".$bild); # upload
+		$bild			= uniqid().".jpg";	
+		move_uploaded_file($_FILES["bild"]["tmp_name"], "uploads/".$bild); 
 	}
 	else
 	{
@@ -30,8 +30,7 @@ if(isset($_POST["produkt_speichern"]))
 	}
 	
 	
-	# Datenbank
-	# Produkt speichern
+
 	mysqli_query($link, "insert into produkte 
 						(bezeichnung, beschreibung, farbe, preis, bild)
 						values
@@ -40,7 +39,7 @@ if(isset($_POST["produkt_speichern"]))
 	#print_r($link);
 	$produkt_pk = $link->insert_id; # primärschlüssel
 
-	# Lagerbestand speichern
+	
 	mysqli_query($link, "insert into lagerbestand 
 						(produkt_fk, groesse, verfuegbare_menge)
 						values
