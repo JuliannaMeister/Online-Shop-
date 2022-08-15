@@ -2,20 +2,20 @@
 if(isset($_POST["produkt_loeschen_ja"]))
 {
 	include("alte_produkt_daten_laden.php");
-	# Schritt 1 Datei löschen
+	
 	unlink("uploads/$bilddatei");
-	# Schritt 2 Lagerbestand löschen
+	
 	mysqli_query($link, "delete from lagerbestand where produkt_fk = $produkt_pk");
-	# Schritt 3 Produkt löschen
+	
 	mysqli_query($link, "delete from produkte where produkt_pk = $produkt_pk");
 	
-	# Umleitung
+	
 	header("Location: ?seite=verwaltung");
 	exit;	
 }
 else if(isset($_POST["produkt_loeschen_nein"]))
 {
-	# Umleitung
+	
 	header("Location: ?seite=verwaltung");
 	exit;	
 }
